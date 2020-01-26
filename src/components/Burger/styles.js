@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const BurgerDiv = styled.div`
+  grid-area: burger;
   width: 100%;
-  margin: auto;
+  margin: 0 20px 0 40px;
   height: 250px;
   text-align: center;
   font-weight: bold;

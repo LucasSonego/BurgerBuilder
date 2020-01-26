@@ -1,13 +1,21 @@
 import React from "react";
 
 import { BurgerDiv } from "./styles";
-import { BreadTop, BreadBottom } from "./BurgerIngredient/BurgerIngredient";
+import {
+  BreadTop,
+  BreadBottom,
+  Seeds1,
+  Seeds2
+} from "./BurgerIngredient/BurgerIngredient";
 
 export default function Burger(props) {
   return (
     <BurgerDiv>
-      <BreadTop />
-      {props.ingredients.map(ing => ing())}
+      <BreadTop>
+        <Seeds1 />
+        <Seeds2 />
+      </BreadTop>
+      {props.ingredients.map((ing, key) => ing(key))}
       <BreadBottom />
     </BurgerDiv>
   );
