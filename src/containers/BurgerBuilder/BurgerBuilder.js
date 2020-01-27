@@ -21,6 +21,22 @@ export default function BurgerBuilder() {
     list: [meat, salad, cheese, bacon]
   });
 
+  const availableIngredients = [salad, bacon, cheese, meat];
+
+  function renderBuildControl(ingredient) {
+    const ingredientLabel =
+      ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
+
+    return (
+      <BuildControl
+        label={ingredientLabel}
+        add={() => addIngredient(ingredient)}
+        remove={() => removeIngredient(ingredient)}
+        key={ingredient.name}
+      />
+    );
+  }
+
   function addIngredient(ingredient) {
     setIngredients({
       list: [ingredient, ...ingredients.list]
@@ -52,26 +68,7 @@ export default function BurgerBuilder() {
   return (
     <Container>
       <Controls>
-        <BuildControl
-          label="Salad"
-          add={() => addIngredient(salad)}
-          remove={() => removeIngredient(salad)}
-        />
-        <BuildControl
-          label="Cheese"
-          add={() => addIngredient(cheese)}
-          remove={() => removeIngredient(cheese)}
-        />
-        <BuildControl
-          label="Bacon"
-          add={() => addIngredient(bacon)}
-          remove={() => removeIngredient(bacon)}
-        />
-        <BuildControl
-          label="Meat"
-          add={() => addIngredient(meat)}
-          remove={() => removeIngredient(meat)}
-        />
+        {availableIngredients.map(i => renderBuildControl(i))}
       </Controls>
       <Burger ingredients={ingredients.list} />
     </Container>
