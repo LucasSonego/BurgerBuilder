@@ -65,9 +65,17 @@ export default function BurgerBuilder() {
     });
   }
 
+  function getPrice() {
+    if (ingredients.list.length > 0) {
+      return <h3>Price: ${ingredients.list.length * 2}</h3>;
+    }
+    return false;
+  }
+
   return (
     <Container>
       <Controls>
+        {getPrice()}
         {availableIngredients.map(i => renderBuildControl(i))}
       </Controls>
       <Burger ingredients={ingredients.list} />
