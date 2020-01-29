@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Controls } from "./styles";
+import { Container, Controls, OrderButton, Price } from "./styles";
 
 import Burger from "../../components/Burger/Burger";
 import {
@@ -65,17 +65,19 @@ export default function BurgerBuilder() {
     });
   }
 
-  function getPrice() {
-    if (ingredients.list.length > 0) {
-      return <h3>Price: ${ingredients.list.length * 2}</h3>;
-    }
-    return false;
+  function burgerHasIgredients() {
+    return !ingredients.list.length > 0;
   }
 
   return (
     <Container>
       <Controls>
-        {getPrice()}
+        <div>
+          <OrderButton disabled={burgerHasIgredients()}>Order</OrderButton>
+          <Price disabled={burgerHasIgredients()}>
+            {"Price: $" + (4 + ingredients.list.length * 2)}
+          </Price>
+        </div>
         {availableIngredients.map(i => renderBuildControl(i))}
       </Controls>
       <Burger ingredients={ingredients.list} />
