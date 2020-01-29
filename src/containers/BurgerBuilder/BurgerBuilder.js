@@ -10,6 +10,7 @@ import {
   Meat
 } from "../../components/Burger/BurgerIngredient/BurgerIngredient";
 import BuildControl from "../../components/Burger/BuildControl/BuildControl";
+import Modal from "../../components/UI/Modal/Modal";
 
 export default function BurgerBuilder() {
   const salad = key => <Salad key={key} />;
@@ -22,6 +23,12 @@ export default function BurgerBuilder() {
   });
 
   const availableIngredients = [salad, bacon, cheese, meat];
+
+  const [modalState, setModalState] = useState(false);
+
+  function toggleModal() {
+    setModalState(!modalState);
+  }
 
   function renderBuildControl(ingredient) {
     const ingredientLabel =
@@ -71,9 +78,17 @@ export default function BurgerBuilder() {
 
   return (
     <Container>
+      <Modal visible={modalState}>
+        <h1>Test</h1>
+      </Modal>
       <Controls>
         <div>
-          <OrderButton disabled={burgerHasIgredients()}>Order</OrderButton>
+          <OrderButton
+            disabled={burgerHasIgredients()}
+            onClick={() => toggleModal()}
+          >
+            Order Now
+          </OrderButton>
           <Price disabled={burgerHasIgredients()}>
             {"Price: $" + (4 + ingredients.list.length * 2)}
           </Price>
