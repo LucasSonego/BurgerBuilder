@@ -11,6 +11,7 @@ import {
 } from "../../components/Burger/BurgerIngredient/BurgerIngredient";
 import BuildControl from "../../components/Burger/BuildControl/BuildControl";
 import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 export default function BurgerBuilder() {
   const salad = key => <Salad key={key} />;
@@ -79,7 +80,10 @@ export default function BurgerBuilder() {
   return (
     <Container>
       <Modal visible={modalState}>
-        <h1>Test</h1>
+        <OrderSummary
+          ingredients={ingredients.list}
+          available={availableIngredients}
+        />
       </Modal>
       <Controls>
         <div>
