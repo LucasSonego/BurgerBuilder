@@ -79,7 +79,7 @@ export default function BurgerBuilder() {
 
   return (
     <Container>
-      <Modal visible={modalState}>
+      <Modal visible={modalState} onClick={() => toggleModal()}>
         <OrderSummary
           ingredients={ingredients.list}
           available={availableIngredients}
