@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Container, Title, StyledH3, IngredientList } from "./styles";
+import Button from "../../UI/Button/Button";
 
 export default function OrderSummary(props) {
   function getIngredientAmmount() {
@@ -46,6 +47,12 @@ export default function OrderSummary(props) {
       <StyledH3>A delicious burger with the following ingredients:</StyledH3>
       {createIngredientList()}
       <StyledH3>Total Price: ${4 + props.ingredients.length * 2}</StyledH3>
+      <Button color={"#e74c3c"} onClick={props.cancel}>
+        CANCEL
+      </Button>
+      <Button color={"#27ae60"} onClick={props.continue}>
+        CONTINUE
+      </Button>
     </Container>
   );
 }

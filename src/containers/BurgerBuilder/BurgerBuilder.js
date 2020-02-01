@@ -83,6 +83,8 @@ export default function BurgerBuilder() {
         <OrderSummary
           ingredients={ingredients.list}
           available={availableIngredients}
+          cancel={() => toggleModal()}
+          // continue={}
         />
       </Modal>
       <Controls>
