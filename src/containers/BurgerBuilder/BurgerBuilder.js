@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Controls } from "./styles";
+import { Container, Controls, OrderButton, Price } from "./styles";
 
 import Burger from "../../components/Burger/Burger";
 import {
@@ -10,6 +10,8 @@ import {
   Meat
 } from "../../components/Burger/BurgerIngredient/BurgerIngredient";
 import BuildControl from "../../components/Burger/BuildControl/BuildControl";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 export default function BurgerBuilder() {
   const salad = key => <Salad key={key} />;
@@ -22,6 +24,12 @@ export default function BurgerBuilder() {
   });
 
   const availableIngredients = [salad, bacon, cheese, meat];
+
+  const [modalState, setModalState] = useState(false);
+
+  function toggleModal() {
+    setModalState(!modalState);
+  }
 
   function renderBuildControl(ingredient) {
     const ingredientLabel =
@@ -65,17 +73,32 @@ export default function BurgerBuilder() {
     });
   }
 
-  function getPrice() {
-    if (ingredients.list.length > 0) {
-      return <h3>Price: ${ingredients.list.length * 2}</h3>;
-    }
-    return false;
+  function burgerHasIgredients() {
+    return !ingredients.list.length > 0;
   }
 
   return (
     <Container>
+      <Modal visible={modalState} onClick={() => toggleModal()}>
+        <OrderSummary
+          ingredients={ingredients.list}
+          available={availableIngredients}
+          cancel={() => toggleModal()}
+          // continue={}
+        />
+      </Modal>
       <Controls>
-        {getPrice()}
+        <div>
+          <OrderButton
+            disabled={burgerHasIgredients()}
+            onClick={() => toggleModal()}
+          >
+            Order Now
+          </OrderButton>
+          <Price disabled={burgerHasIgredients()}>
+            {"Price: $" + (4 + ingredients.list.length * 2)}
+          </Price>
+        </div>
         {availableIngredients.map(i => renderBuildControl(i))}
       </Controls>
       <Burger ingredients={ingredients.list} />
