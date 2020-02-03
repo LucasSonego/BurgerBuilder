@@ -6,10 +6,29 @@ export const Container = styled.div`
   grid-template-rows: min-content;
   grid-template-areas: "controls burger";
   justify-content: center;
+  grid-gap: 20px;
+  padding: 30px;
+  @media (max-width: 850px) {
+    width: 100%;
+    display: inline-grid;
+    justify-items: center;
+    grid-template-columns: min-content;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "burger"
+      "controls";
+  }
+  @media (max-width: 450px) {
+    padding: 10px;
+    width: auto;
+  }
 `;
 
 export const Controls = styled.div`
   grid-area: controls;
+  @media (max-width: 450px) {
+    width: fit-content;
+  }
 `;
 
 export const OrderButton = styled.button`
@@ -35,9 +54,7 @@ export const Price = styled.h3`
   ${props =>
     props.disabled &&
     css`
-       {
-        color: #7f8c8d;
-        text-decoration: line-through;
-      }
+      color: #7f8c8d;
+      text-decoration: line-through;
     `}
 `;
