@@ -20,4 +20,9 @@ export const Container = styled.div`
       transform: translateY(-100vh);
       opacity: 0;
     `}
+
+  @media (max-width: 550px) {
+    width: 90%;
+    margin: 30px;
+  }
 `;

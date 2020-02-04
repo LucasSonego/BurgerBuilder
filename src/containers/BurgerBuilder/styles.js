@@ -39,7 +39,8 @@ export const OrderButton = styled.button`
   border-radius: 5px;
   border: none;
   float: right;
-  margin: 0 0 5px 0;
+  margin: 0 5px 5px 0;
+  cursor: pointer;
 
   &:disabled {
     color: #7f8c8d;
@@ -49,7 +50,8 @@ export const OrderButton = styled.button`
 
 export const Price = styled.h3`
   color: #000;
-  margin: 5px;
+  margin: 0;
+  padding: 5px 0 5px 5px;
 
   ${props =>
     props.disabled &&
