@@ -21,8 +21,8 @@ export const Container = styled.div`
       opacity: 0;
     `}
 
-  @media (max-width: 550px) {
-    width: 90%;
-    margin: 30px;
+  @media (max-width: 450px) {
+    width: fit-content;
+    margin: 0 0 0 50px;
   }
 `;
