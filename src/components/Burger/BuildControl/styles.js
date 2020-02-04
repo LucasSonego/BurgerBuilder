@@ -27,6 +27,7 @@ export const AddButton = styled.button`
   border: none;
   outline: none;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const RemoveButton = styled.button`
@@ -36,4 +37,5 @@ export const RemoveButton = styled.button`
   border: none;
   outline: none;
   font-weight: bold;
+  cursor: pointer;
 `;

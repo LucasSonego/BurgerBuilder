@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { Container, Controls, OrderButton, Price } from "./styles";
-
 import Burger from "../../components/Burger/Burger";
 import {
   Bacon,
@@ -31,7 +30,7 @@ export default function BurgerBuilder() {
     setModalState(!modalState);
   }
 
-  function renderBuildControl(ingredient) {
+  function createBuildControl(ingredient) {
     const ingredientLabel =
       ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
 
@@ -100,7 +99,7 @@ export default function BurgerBuilder() {
               {"Price: $" + (4 + ingredients.list.length * 2)}
             </Price>
           </div>
-          {availableIngredients.map(i => renderBuildControl(i))}
+          {availableIngredients.map(i => createBuildControl(i))}
         </Controls>
         <Burger ingredients={ingredients.list} />
       </Container>
