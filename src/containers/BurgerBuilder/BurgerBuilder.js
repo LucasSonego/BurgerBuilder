@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { Container, Controls, OrderButton, Price } from "./styles";
-
 import Burger from "../../components/Burger/Burger";
 import {
   Bacon,
@@ -31,7 +30,7 @@ export default function BurgerBuilder() {
     setModalState(!modalState);
   }
 
-  function renderBuildControl(ingredient) {
+  function createBuildControl(ingredient) {
     const ingredientLabel =
       ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
 
@@ -78,7 +77,7 @@ export default function BurgerBuilder() {
   }
 
   return (
-    <Container>
+    <>
       <Modal visible={modalState} onClick={() => toggleModal()}>
         <OrderSummary
           ingredients={ingredients.list}
@@ -87,21 +86,23 @@ export default function BurgerBuilder() {
           // continue={}
         />
       </Modal>
-      <Controls>
-        <div>
-          <OrderButton
-            disabled={burgerHasIgredients()}
-            onClick={() => toggleModal()}
-          >
-            Order Now
-          </OrderButton>
-          <Price disabled={burgerHasIgredients()}>
-            {"Price: $" + (4 + ingredients.list.length * 2)}
-          </Price>
-        </div>
-        {availableIngredients.map(i => renderBuildControl(i))}
-      </Controls>
-      <Burger ingredients={ingredients.list} />
-    </Container>
+      <Container>
+        <Controls>
+          <div>
+            <OrderButton
+              disabled={burgerHasIgredients()}
+              onClick={() => toggleModal()}
+            >
+              Order Now
+            </OrderButton>
+            <Price disabled={burgerHasIgredients()}>
+              {"Price: $" + (4 + ingredients.list.length * 2)}
+            </Price>
+          </div>
+          {availableIngredients.map(i => createBuildControl(i))}
+        </Controls>
+        <Burger ingredients={ingredients.list} />
+      </Container>
+    </>
   );
 }
