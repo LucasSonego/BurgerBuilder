@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  color: #7f8c8d;
+  color: #2d2d2d;
 `;
 
 export const Title = styled.h2`
