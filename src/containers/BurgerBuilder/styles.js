@@ -32,7 +32,7 @@ export const Controls = styled.div`
 `;
 
 export const OrderButton = styled.button`
-  background: #f39c12;
+  background-image: linear-gradient(120deg, #ffb142, #ff793f);
   color: #000;
   padding: 10px;
   font-weight: bold;
