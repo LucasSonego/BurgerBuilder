@@ -13,13 +13,25 @@ import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 export default function BurgerBuilder() {
-  const salad = key => <Salad key={key} />;
-  const bacon = key => <Bacon key={key} />;
-  const cheese = key => <Cheese key={key} />;
-  const meat = key => <Meat key={key} />;
+  const salad = {
+    render: key => <Salad key={key} />,
+    label: "Salad"
+  };
+  const bacon = {
+    render: key => <Bacon key={key} />,
+    label: "Bacon"
+  };
+  const cheese = {
+    render: key => <Cheese key={key} />,
+    label: "Cheese"
+  };
+  const meat = {
+    render: key => <Meat key={key} />,
+    label: "Meat"
+  };
 
   const [ingredients, setIngredients] = useState({
-    list: [meat, salad, cheese, bacon]
+    list: [salad, cheese, bacon, meat]
   });
 
   const availableIngredients = [salad, bacon, cheese, meat];
@@ -31,15 +43,12 @@ export default function BurgerBuilder() {
   }
 
   function createBuildControl(ingredient) {
-    const ingredientLabel =
-      ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
-
     return (
       <BuildControl
-        label={ingredientLabel}
+        label={ingredient.label}
         add={() => addIngredient(ingredient)}
         remove={() => removeIngredient(ingredient)}
-        key={ingredient.name}
+        key={ingredient.label}
       />
     );
   }
@@ -55,7 +64,7 @@ export default function BurgerBuilder() {
     let found = -1;
 
     while (i >= 0) {
-      if (ingredients.list[i].name === ingredient.name) {
+      if (ingredients.list[i].label === ingredient.label) {
         found = i;
       }
       i--;
