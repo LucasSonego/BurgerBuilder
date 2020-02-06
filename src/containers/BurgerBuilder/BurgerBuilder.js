@@ -95,6 +95,7 @@ export default function BurgerBuilder() {
         <OrderSummary
           ingredients={ingredients}
           available={availableIngredients}
+          price={getTotalPrice()}
           cancel={() => toggleModal()}
           // continue={}
         />
