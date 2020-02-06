@@ -30,9 +30,7 @@ export default function BurgerBuilder() {
     label: "Meat"
   };
 
-  const [ingredients, setIngredients] = useState({
-    list: [salad, cheese, bacon, meat]
-  });
+  const [ingredients, setIngredients] = useState([salad, cheese, bacon, meat]);
 
   const availableIngredients = [salad, bacon, cheese, meat];
 
@@ -54,42 +52,38 @@ export default function BurgerBuilder() {
   }
 
   function addIngredient(ingredient) {
-    setIngredients({
-      list: [ingredient, ...ingredients.list]
-    });
+    setIngredients([ingredient, ...ingredients]);
   }
 
   function removeIngredient(ingredient) {
-    let i = ingredients.list.length - 1;
+    let i = ingredients.length - 1;
     let found = -1;
 
     while (i >= 0) {
-      if (ingredients.list[i].label === ingredient.label) {
+      if (ingredients[i].label === ingredient.label) {
         found = i;
       }
       i--;
     }
 
-    let newIngredients = [...ingredients.list];
+    let newIngredients = [...ingredients];
 
     if (found >= 0) {
       newIngredients.splice(found, 1);
     }
 
-    setIngredients({
-      list: [...newIngredients]
-    });
+    setIngredients([...newIngredients]);
   }
 
   function burgerHasIgredients() {
-    return !ingredients.list.length > 0;
+    return !ingredients.length > 0;
   }
 
   return (
     <>
       <Modal visible={modalState} onClick={() => toggleModal()}>
         <OrderSummary
-          ingredients={ingredients.list}
+          ingredients={ingredients}
           available={availableIngredients}
           cancel={() => toggleModal()}
           // continue={}
@@ -105,12 +99,12 @@ export default function BurgerBuilder() {
               Order Now
             </OrderButton>
             <Price disabled={burgerHasIgredients()}>
-              {"Price: $" + (4 + ingredients.list.length * 2)}
+              {"Price: $" + (4 + ingredients.length * 2)}
             </Price>
           </div>
           {availableIngredients.map(i => createBuildControl(i))}
         </Controls>
-        <Burger ingredients={ingredients.list} />
+        <Burger ingredients={ingredients} />
       </Container>
     </>
   );
