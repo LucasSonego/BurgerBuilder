@@ -80,7 +80,7 @@ export default function BurgerBuilder() {
   }
 
   function burgerHasIgredients() {
-    return !ingredients.length > 0;
+    return ingredients.length > 0;
   }
 
   function getTotalPrice() {
@@ -104,12 +104,12 @@ export default function BurgerBuilder() {
         <Controls>
           <div>
             <OrderButton
-              disabled={burgerHasIgredients()}
+              disabled={!burgerHasIgredients()}
               onClick={() => toggleModal()}
             >
               Order Now
             </OrderButton>
-            <Price disabled={burgerHasIgredients()}>
+            <Price disabled={!burgerHasIgredients()}>
               {"Price: $" + getTotalPrice()}
             </Price>
           </div>
