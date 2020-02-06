@@ -15,19 +15,23 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 export default function BurgerBuilder() {
   const salad = {
     render: key => <Salad key={key} />,
-    label: "Salad"
+    label: "Salad",
+    price: 0.5
   };
   const bacon = {
     render: key => <Bacon key={key} />,
-    label: "Bacon"
+    label: "Bacon",
+    price: 1
   };
   const cheese = {
     render: key => <Cheese key={key} />,
-    label: "Cheese"
+    label: "Cheese",
+    price: 0.5
   };
   const meat = {
     render: key => <Meat key={key} />,
-    label: "Meat"
+    label: "Meat",
+    price: 1.5
   };
 
   const [ingredients, setIngredients] = useState([salad, cheese, bacon, meat]);
@@ -79,6 +83,12 @@ export default function BurgerBuilder() {
     return !ingredients.length > 0;
   }
 
+  function getTotalPrice() {
+    let price = 4;
+    ingredients.map(i => (price += i.price));
+    return price;
+  }
+
   return (
     <>
       <Modal visible={modalState} onClick={() => toggleModal()}>
@@ -99,7 +109,7 @@ export default function BurgerBuilder() {
               Order Now
             </OrderButton>
             <Price disabled={burgerHasIgredients()}>
-              {"Price: $" + (4 + ingredients.length * 2)}
+              {"Price: $" + getTotalPrice()}
             </Price>
           </div>
           {availableIngredients.map(i => createBuildControl(i))}
