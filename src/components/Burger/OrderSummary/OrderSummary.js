@@ -8,7 +8,7 @@ export default function OrderSummary(props) {
     let ingredientAmmount = props.available.map(ingredient => {
       let ammount = 0;
       for (let index = 0; index < props.ingredients.length; index++) {
-        if (props.ingredients[index].name === ingredient.name) {
+        if (props.ingredients[index].label === ingredient.label) {
           ammount++;
         }
       }
@@ -16,10 +16,6 @@ export default function OrderSummary(props) {
     });
 
     return ingredientAmmount;
-  }
-
-  function formattedName(ingredient) {
-    return ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
   }
 
   function createIngredientList() {
@@ -31,7 +27,7 @@ export default function OrderSummary(props) {
           if (ingredientAmmount[index] > 0) {
             return (
               <li key={index}>
-                {formattedName(ingredient) + ": " + ingredientAmmount[index]}
+                {ingredient.label + ": " + ingredientAmmount[index]}
               </li>
             );
           }
@@ -46,7 +42,7 @@ export default function OrderSummary(props) {
       <Title>Your Order</Title>
       <StyledH3>A delicious burger with the following ingredients:</StyledH3>
       {createIngredientList()}
-      <StyledH3>Total Price: ${4 + props.ingredients.length * 2}</StyledH3>
+      <StyledH3>Total Price: ${props.price}</StyledH3>
       <Button color={"#e74c3c"} onClick={props.cancel}>
         CANCEL
       </Button>

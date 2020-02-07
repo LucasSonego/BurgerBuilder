@@ -13,14 +13,28 @@ import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 export default function BurgerBuilder() {
-  const salad = key => <Salad key={key} />;
-  const bacon = key => <Bacon key={key} />;
-  const cheese = key => <Cheese key={key} />;
-  const meat = key => <Meat key={key} />;
+  const salad = {
+    render: key => <Salad key={key} />,
+    label: "Salad",
+    price: 0.5
+  };
+  const bacon = {
+    render: key => <Bacon key={key} />,
+    label: "Bacon",
+    price: 1
+  };
+  const cheese = {
+    render: key => <Cheese key={key} />,
+    label: "Cheese",
+    price: 0.5
+  };
+  const meat = {
+    render: key => <Meat key={key} />,
+    label: "Meat",
+    price: 1.5
+  };
 
-  const [ingredients, setIngredients] = useState({
-    list: [meat, salad, cheese, bacon]
-  });
+  const [ingredients, setIngredients] = useState([salad, cheese, bacon, meat]);
 
   const availableIngredients = [salad, bacon, cheese, meat];
 
@@ -31,57 +45,57 @@ export default function BurgerBuilder() {
   }
 
   function createBuildControl(ingredient) {
-    const ingredientLabel =
-      ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1);
-
     return (
       <BuildControl
-        label={ingredientLabel}
+        label={ingredient.label}
         add={() => addIngredient(ingredient)}
         remove={() => removeIngredient(ingredient)}
-        key={ingredient.name}
+        key={ingredient.label}
       />
     );
   }
 
   function addIngredient(ingredient) {
-    setIngredients({
-      list: [ingredient, ...ingredients.list]
-    });
+    setIngredients([ingredient, ...ingredients]);
   }
 
   function removeIngredient(ingredient) {
-    let i = ingredients.list.length - 1;
+    let i = ingredients.length - 1;
     let found = -1;
 
     while (i >= 0) {
-      if (ingredients.list[i].name === ingredient.name) {
+      if (ingredients[i].label === ingredient.label) {
         found = i;
       }
       i--;
     }
 
-    let newIngredients = [...ingredients.list];
+    let newIngredients = [...ingredients];
 
     if (found >= 0) {
       newIngredients.splice(found, 1);
     }
 
-    setIngredients({
-      list: [...newIngredients]
-    });
+    setIngredients([...newIngredients]);
   }
 
   function burgerHasIgredients() {
-    return !ingredients.list.length > 0;
+    return ingredients.length > 0;
+  }
+
+  function getTotalPrice() {
+    let price = 4;
+    ingredients.map(i => (price += i.price));
+    return price;
   }
 
   return (
     <>
       <Modal visible={modalState} onClick={() => toggleModal()}>
         <OrderSummary
-          ingredients={ingredients.list}
+          ingredients={ingredients}
           available={availableIngredients}
+          price={getTotalPrice()}
           cancel={() => toggleModal()}
           // continue={}
         />
@@ -90,18 +104,18 @@ export default function BurgerBuilder() {
         <Controls>
           <div>
             <OrderButton
-              disabled={burgerHasIgredients()}
+              disabled={!burgerHasIgredients()}
               onClick={() => toggleModal()}
             >
               Order Now
             </OrderButton>
-            <Price disabled={burgerHasIgredients()}>
-              {"Price: $" + (4 + ingredients.list.length * 2)}
+            <Price disabled={!burgerHasIgredients()}>
+              {"Price: $" + getTotalPrice()}
             </Price>
           </div>
           {availableIngredients.map(i => createBuildControl(i))}
         </Controls>
-        <Burger ingredients={ingredients.list} />
+        <Burger ingredients={ingredients} />
       </Container>
     </>
   );

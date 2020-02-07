@@ -15,7 +15,7 @@ export default function Burger(props) {
         <Seeds1 />
         <Seeds2 />
       </BreadTop>
-      {props.ingredients.map((ing, key) => ing(key))}
+      {props.ingredients.map((ing, key) => ing.render(key))}
       <BreadBottom />
     </BurgerDiv>
   );
