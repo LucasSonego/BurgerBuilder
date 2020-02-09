@@ -1,11 +1,12 @@
 import React from "react";
 
-import { Container, Label, ControlButton } from "./styles";
+import { Container, Label, ControlButton, Price } from "./styles";
 
 const BuildControl = props => (
   <Container>
     <Label>{props.label}</Label>
     <div>
+      <Price>${props.price.toFixed(2)}</Price>
       <ControlButton
         background="linear-gradient(120deg, #ffda79, #ffb142)"
         onClick={props.add}
