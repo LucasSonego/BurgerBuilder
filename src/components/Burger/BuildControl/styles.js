@@ -21,6 +21,13 @@ export const Label = styled.h3`
   align-self: center;
 `;
 
+export const Price = styled.p`
+  color: #7f8c8d;
+  float: left;
+  margin: 6px 15px 0 0;
+  font-weight: bold;
+`;
+
 export const ControlButton = styled.button`
   background-image: ${props => props.background};
   margin: 5px;
