@@ -48,6 +48,7 @@ export default function BurgerBuilder() {
     return (
       <BuildControl
         label={ingredient.label}
+        price={ingredient.price}
         add={() => addIngredient(ingredient)}
         remove={() => removeIngredient(ingredient)}
         key={ingredient.label}
