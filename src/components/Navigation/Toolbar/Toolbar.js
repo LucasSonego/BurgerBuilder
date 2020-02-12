@@ -8,7 +8,7 @@ export default function Toolbar() {
   return (
     <Header>
       <div>Menu</div>
-      <Logo />
+      <Logo size="80%" />
       <NavigationItems />
     </Header>
   );

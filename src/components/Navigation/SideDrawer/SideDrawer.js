@@ -7,7 +7,7 @@ import NavigationItems from "../NavigationItems/NavigationItems";
 export default function SideDrawer() {
   return (
     <Container>
-      <Logo />
+      <Logo size="80px" />
       <nav>
         <NavigationItems />
       </nav>
