@@ -6,6 +6,7 @@ export const Item = styled.li`
   display: flex;
   height: 100%;
   align-items: center;
+  transition: 0.3s;
 
   a {
     color: #eeeeee;
