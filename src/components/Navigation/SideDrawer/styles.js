@@ -9,11 +9,12 @@ export const Container = styled.div`
   top: 0;
   z-index: 200;
   background-color: #fff;
-  padding: 32px 16px;
+  padding: 20px 0;
   box-sizing: border-box;
   transition: transform 0.3s ease-out;
+  text-align: center;
 
-  @media (min-width: 500px) {
+  @media (min-width: 850px) {
     display: none;
   }
 
