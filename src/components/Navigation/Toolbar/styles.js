@@ -18,3 +18,10 @@ export const Header = styled.header`
     height: 100%;
   }
 `;
+
+export const HideOnMobile = styled.div`
+  height: 100%;
+  @media (max-width: 850px) {
+    display: none;
+  }
+`;
