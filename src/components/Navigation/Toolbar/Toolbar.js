@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Header } from "./styles";
+import { Header, HideOnMobile } from "./styles";
 import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 
@@ -9,7 +9,9 @@ export default function Toolbar() {
     <Header>
       <div>Menu</div>
       <Logo size="80%" />
-      <NavigationItems />
+      <HideOnMobile>
+        <NavigationItems />
+      </HideOnMobile>
     </Header>
   );
 }
