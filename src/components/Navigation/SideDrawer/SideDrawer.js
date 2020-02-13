@@ -8,7 +8,7 @@ import Backdrop from "../../UI/Backdrop/Backdrop";
 export default function SideDrawer(props) {
   return (
     <>
-      <Backdrop clicked={props.toggleSideDrawer} show={props.open} />
+      <Backdrop onClick={props.toggleSideDrawer} show={props.open} />
       <Container open={props.open}>
         <Logo size="80px" />
         <nav>

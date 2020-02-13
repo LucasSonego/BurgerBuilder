@@ -6,7 +6,7 @@ import Backdrop from "../Backdrop/Backdrop";
 export default function Modal(props) {
   return (
     <>
-      <Backdrop show={props.visible} clicked={props.onClick} />
+      <Backdrop show={props.visible} onClick={props.onClick} />
       <Container visible={props.visible ? "visible" : undefined}>
         {props.children}
       </Container>
