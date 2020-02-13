@@ -7,4 +7,9 @@ export const Items = styled.ul`
   display: flex;
   align-items: center;
   height: 100%;
+
+  @media (max-width: 850px) {
+    display: block;
+    width: 100%;
+  }
 `;
