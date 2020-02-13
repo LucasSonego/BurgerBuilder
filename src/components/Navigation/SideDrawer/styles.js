@@ -19,8 +19,11 @@ export const Container = styled.div`
   }
 
   ${props =>
-    props.open &&
-    css`
-      transform: translateX(0);
-    `}
+    props.open
+      ? css`
+          transform: translateX(0);
+        `
+      : css`
+          transform: translateX(-100%);
+        `}
 `;

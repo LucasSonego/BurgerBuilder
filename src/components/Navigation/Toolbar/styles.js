@@ -19,9 +19,28 @@ export const Header = styled.header`
   }
 `;
 
+export const MenuButton = styled.button`
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  svg {
+    color: #eeeeee;
+    height: 40px;
+    width: 40px;
+  }
+`;
+
 export const HideOnMobile = styled.div`
   height: 100%;
   @media (max-width: 850px) {
+    display: none;
+  }
+`;
+
+export const MobileOnly = styled.div`
+  height: 100%;
+  @media (min-width: 850px) {
     display: none;
   }
 `;
