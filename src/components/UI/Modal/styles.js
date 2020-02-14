@@ -15,7 +15,7 @@ export const Container = styled.div`
   width: 500px;
 
   ${props =>
-    !props.visible &&
+    !props.isVisible &&
     css`
       transform: translateY(-100vh);
       opacity: 0;
