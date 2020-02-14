@@ -14,7 +14,10 @@ export default function Layout(props) {
   return (
     <>
       <Toolbar toggleSideDrawer={toggleSideDrawer} />
-      <SideDrawer open={sideDrawerState} toggleSideDrawer={toggleSideDrawer} />
+      <SideDrawer
+        isVisible={sideDrawerState}
+        toggleSideDrawer={toggleSideDrawer}
+      />
       <Main>{props.children}</Main>
     </>
   );

@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
 
   ${props =>
-    props.open
+    props.isVisible
       ? css`
           transform: translateX(0);
         `
