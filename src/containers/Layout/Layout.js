@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { Main } from "./styles";
-import Toolbar from "../Navigation/Toolbar/Toolbar";
-import SideDrawer from "../Navigation/SideDrawer/SideDrawer";
+import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
+import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 
 export default function Layout(props) {
   const [sideDrawerState, setSideDrawerState] = useState(false);
@@ -14,7 +14,10 @@ export default function Layout(props) {
   return (
     <>
       <Toolbar toggleSideDrawer={toggleSideDrawer} />
-      <SideDrawer open={sideDrawerState} toggleSideDrawer={toggleSideDrawer} />
+      <SideDrawer
+        isVisible={sideDrawerState}
+        toggleSideDrawer={toggleSideDrawer}
+      />
       <Main>{props.children}</Main>
     </>
   );
